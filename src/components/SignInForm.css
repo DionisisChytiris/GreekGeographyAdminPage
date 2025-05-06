@@ -1,0 +1,135 @@
+/* Sign In Form Styles */
+.sign-in-form {
+    display: flex;
+    flex-direction: column;
+    gap: 24px;
+  }
+  
+  .password-container {
+    position: relative;
+  }
+  
+  .password-toggle {
+    position: absolute;
+    right: 16px;
+    top: 38px;
+    background: none;
+    border: none;
+    color: #2a6cb9;
+    font-size: 14px;
+    cursor: pointer;
+    transition: all 0.2s ease;
+    z-index: 2;
+  }
+  
+  .password-toggle:hover {
+    color: #1c4b82;
+    text-decoration: underline;
+  }
+  
+  .form-options {
+    display: flex;
+    justify-content: space-between;
+    align-items: center;
+    margin-top: -8px;
+  }
+  
+  .remember-me {
+    display: flex;
+    align-items: center;
+    position: relative;
+    padding-left: 28px;
+    cursor: pointer;
+    font-size: 14px;
+    color: #555;
+    user-select: none;
+  }
+  
+  .remember-me input {
+    position: absolute;
+    opacity: 0;
+    cursor: pointer;
+    height: 0;
+    width: 0;
+  }
+  
+  .checkmark {
+    position: absolute;
+    left: 0;
+    top: 0;
+    height: 18px;
+    width: 18px;
+    background-color: #fff;
+    border: 2px solid #ccc;
+    border-radius: 4px;
+    transition: all 0.2s ease;
+  }
+  
+  .remember-me:hover input ~ .checkmark {
+    border-color: #2a6cb9;
+  }
+  
+  .remember-me input:checked ~ .checkmark {
+    background-color: #2a6cb9;
+    border-color: #2a6cb9;
+  }
+  
+  .checkmark:after {
+    content: "";
+    position: absolute;
+    display: none;
+  }
+  
+  .remember-me input:checked ~ .checkmark:after {
+    display: block;
+    left: 5px;
+    top: 1px;
+    width: 5px;
+    height: 10px;
+    border: solid white;
+    border-width: 0 2px 2px 0;
+    transform: rotate(45deg);
+  }
+  
+  .forgot-password {
+    font-size: 14px;
+    color: #2a6cb9;
+    text-decoration: none;
+    transition: all 0.2s ease;
+  }
+  
+  .forgot-password:hover {
+    color: #1c4b82;
+    text-decoration: underline;
+  }
+  
+  .sign-up-link {
+    text-align: center;
+    font-size: 14px;
+    color: #666;
+    margin-top: 8px;
+  }
+  
+  .sign-up-link a {
+    color: #2a6cb9;
+    text-decoration: none;
+    font-weight: 500;
+    transition: all 0.2s ease;
+  }
+  
+  .sign-up-link a:hover {
+    color: #1c4b82;
+    text-decoration: underline;
+  }
+  
+  @media screen and (max-width: 480px) {
+    .form-options {
+      flex-direction: column;
+      align-items: flex-start;
+      gap: 16px;
+    }
+    
+    .sign-up-link {
+      font-size: 13px;
+    }
+  }

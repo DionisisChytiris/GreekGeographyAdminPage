@@ -1,0 +1,74 @@
+.button {
+    display: inline-block;
+    width: 100%;
+    height: 48px;
+    padding: 0 24px;
+    background: linear-gradient(135deg, #2a6cb9, #1c4b82);
+    color: white;
+    border: none;
+    border-radius: 8px;
+    font-size: 16px;
+    font-weight: 500;
+    cursor: pointer;
+    transition: all 0.3s ease;
+    position: relative;
+    overflow: hidden;
+    box-shadow: 0 4px 16px rgba(42, 108, 185, 0.25);
+  }
+  
+  .button:hover {
+    background: linear-gradient(135deg, #3a7bca, #2c5a91);
+    transform: translateY(-2px);
+    box-shadow: 0 6px 18px rgba(42, 108, 185, 0.3);
+  }
+  
+  .button:active {
+    transform: translateY(0);
+    box-shadow: 0 2px 8px rgba(42, 108, 185, 0.2);
+  }
+  
+  .button::after {
+    content: '';
+    position: absolute;
+    top: 50%;
+    left: 50%;
+    width: 5px;
+    height: 5px;
+    background: rgba(255, 255, 255, 0.5);
+    opacity: 0;
+    border-radius: 100%;
+    transform: scale(1, 1) translate(-50%);
+    transform-origin: 50% 50%;
+  }
+  
+  .button:focus:not(:active)::after {
+    animation: ripple 1s ease-out;
+  }
+  
+  @keyframes ripple {
+    0% {
+      transform: scale(0, 0);
+      opacity: 1;
+    }
+    20% {
+      transform: scale(25, 25);
+      opacity: 0.8;
+    }
+    100% {
+      opacity: 0;
+      transform: scale(40, 40);
+    }
+  }
+  
+  .button.disabled {
+    background: #cccccc;
+    color: #888888;
+    cursor: not-allowed;
+    box-shadow: none;
+    opacity: 0.8;
+  }
+  
+  .button.disabled:hover {
+    transform: none;
+    box-shadow: none;
+  }
