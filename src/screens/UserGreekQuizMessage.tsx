@@ -17,7 +17,7 @@ interface Message {
   }>;
 }
 
-export default function UserMessage() {
+export default function UserGreekQuizMessage() {
   const navigate = useNavigate();
   const { id } = useParams(); // Retrieve dynamic 'id' from URL
   const [messages, setMessages] = useState<Message[]>([]);
@@ -114,29 +114,6 @@ export default function UserMessage() {
     }
   };
 
-  const handleLogout = async () => {
-    try {
-      const response = await fetch(
-        "https://greek-geography-quiz-app-backend.vercel.app/logout",
-        {
-          method: "POST",
-          headers: {
-            "Content-Type": "application/json",
-          },
-        }
-      );
-
-      if (!response.ok) {
-        throw new Error("Logout failed");
-      }
-
-      navigate("/"); // Redirect to login page after logging out
-    } catch (error) {
-      console.error("Error during logout:", error);
-      alert("Logout failed. Please try again.");
-    }
-  };
-
   useEffect(() => {
     fetchMessages();
   }, [id]); // Re-fetch messages when the ID changes
@@ -150,16 +127,21 @@ export default function UserMessage() {
   }
 
   return (
-    <div className="container">
-      <div className="buttons-container">
+    <div>
+      <header className="greek-quiz-header">
+        <div onClick={() => navigate("/homeAdmin")} style={{color: 'grey', marginRight: '20px'}}>Home</div>
+         <img src='/logo.png' alt="Gr" className="image-greekQuiz" />
+         <div>Greek Geography Quiz</div>
+      </header>
+      {/* <div className="buttons-container">
         <div onClick={() => navigate("/homeAdmin")} className="home-button">
           home
         </div>
         <div onClick={handleLogout} className="logout-button">
           Logout
         </div>
-      </div>
-      <div>User number: {id}</div>
+      </div> */}
+      <div style={{textAlign: 'center'}}>User number: {id}</div>
       <div className="messageBox">
         {messages.length === 0 ? (
           <div className="centered">

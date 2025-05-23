@@ -199,7 +199,7 @@ export default function HomeScreen() {
   }
 
   return (
-    <div className="container">
+    <div >
       <div className="buttons-container">
         <div onClick={() => navigate("/homeAdmin")} className="home-button">
           home
