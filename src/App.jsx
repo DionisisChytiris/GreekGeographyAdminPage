@@ -27,7 +27,7 @@ function AppContent() {
         <Route path="/homeAdmin" element={<HomeAdmin />} />
         <Route path="/homeScreen" element={<HomeScreen />} />
         <Route path="/UserGreekQuizMessage/:id" element={<UserGreekQuizMessage />} />
-        <Route path="/UserTriviaMessage/:id" element={<UserTriviaMessage />} />
+        <Route path="/UserTriviaMessage/:userId" element={<UserTriviaMessage />} />
         <Route path="/greekGeography" element={<GreekGeographyScreen/>}/>
         <Route path="/worldTrivia" element={<WorldTriviaScreen/>}/>
       </Routes>

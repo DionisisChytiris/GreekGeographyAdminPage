@@ -1,6 +1,6 @@
 import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaUsers, FaTasks } from "react-icons/fa";
-import { useNavigate } from "react-router-dom";
+import { useNavigate, useParams } from "react-router-dom";
 import "./WorldTriviaScreen.css";
 
 function WorldTriviaScreen() {
@@ -13,43 +13,58 @@ function WorldTriviaScreen() {
     sentAt: string;
   };
   const [messages, setMessages] = useState<Message[]>([]);
-  const [userIds, setUserIds] = useState([]);
+  const [userIds, setUserIds] = useState<any>([]);
   const [messagesByUser, setMessagesByUser] = useState<
     Record<string | number, Message[]>
   >({});
+  // const { userId } = useParams<{ userId: string }>(); // Retrieve dynamic 'id' from URL
+
+  // useEffect(() => {
+  //   if (!userId) return;
+
+  //   const fetchUserMessages = async () => {
+  //     try {
+  //       const response = await fetch("http://192.168.1.234:3000/messages", {
+  //         method: "POST",
+  //         headers: {
+  //           "Content-Type": "application/json",
+  //         },
+  //         body: JSON.stringify({ content: "Hi there!", userId }),
+  //       });
+
+  //       if (!response.ok) {
+  //         throw new Error(`HTTP error! Status: ${response.status}`);
+  //       }
+
+  //       const data = await response.json();
+  //       setMessages(data), setActiveUsers(data.length);
+  //       console.log("Response from server:", data);
+  //     } catch (error) {
+  //       console.error("Error posting message:", error);
+  //     }
+  //   };
+
+  //   fetchUserMessages();
+  // }, [userId]);
 
   useEffect(() => {
-  fetch("http://192.168.1.234:3000/messages/users")
-    .then((res) => res.json())
-    .then((data) => console.log("User IDs:", data))
-    .catch((err) => console.error(err));
-}, []);
+    fetch("http://192.168.1.234:3000/messages")
+      .then((res) => res.json())
+      .then((data) => {
+        const groupedByUser: Record<string, Message[]> = {};
 
+        data.forEach((msg: Message) => {
+          if (!groupedByUser[msg.userId]) {
+            groupedByUser[msg.userId] = [];
+          }
+          groupedByUser[msg.userId].push(msg);
+        });
 
-  useEffect(() => {
-    // Fetch all userIds
-    const fetchUserIds = async () => {
-      try {
-        const res = await fetch("http://192.168.1.234:3000/messages/users");
-        const userIds = await res.json();
-        setUserIds(userIds);
-
-        // Fetch messages for each user
-        const allMessages = {};
-        for (const userId of userIds) {
-          const res = await fetch(
-            `http://192.168.1.234:3000/messages/user-messages/${userId}`
-          );
-          const userMessages = await res.json();
-          allMessages[userId] = userMessages;
-        }
-        setMessagesByUser(allMessages);
-      } catch (err) {
-        console.error("Error fetching user messages", err);
-      }
-    };
-
-    fetchUserIds();
+        setMessagesByUser(groupedByUser);
+        setUserIds(Object.keys(groupedByUser));
+        setActiveUsers(Object.keys(groupedByUser).length);
+      })
+      .catch((err) => console.error(err));
   }, []);
 
   // useEffect(() => {
@@ -98,7 +113,7 @@ function WorldTriviaScreen() {
 
       <div className="user-messages">
         <h2 className="section-title">User Messages</h2>
-        {userIds.map((userId) => (
+        {/* {userIds.map((userId) => (
           <div key={userId}>
             <h3>User: {userId}</h3>
             {(messagesByUser[userId] || []).map((msg) => (
@@ -106,17 +121,45 @@ function WorldTriviaScreen() {
                 <p>
                   <strong>Message:</strong> {msg.content}
                 </p>
-                {/* {msg.reply && (
+                {msg.reply && (
                   <p>
                     <strong>Reply:</strong> {msg.reply}
                   </p>
-                )} */}
+                )}
               </div>
             ))}
           </div>
-        ))}
+        ))} */}
 
-        {messages.map((msg) => {
+        {userIds.map((userId) => {
+          const userMessages = messagesByUser[userId];
+          const latestMessage = userMessages?.[userMessages.length - 1];
+
+          return (
+            <div key={userId} className="user-section">
+              <div className="user-header">
+                <div className="user-info">
+                  <h3 className="user-name">Client ID: {userId}</h3>
+                  <span className="status-dot active"></span>
+                </div>
+                <button
+                  onClick={() => navigate(`/UserTriviaMessage/${userId}`)}
+                  className="view-all-button"
+                >
+                  View All
+                </button>
+              </div>
+
+              <div className="messages-list">
+                <p className="message-text">
+                  Latest message: {latestMessage?.content}
+                </p>
+              </div>
+            </div>
+          );
+        })}
+
+        {/* {messages.map((msg) => {
           console.log("sentAt:", msg.id); // 👈 Check format
           return (
             <div key={msg.id} className="user-section">
@@ -132,32 +175,12 @@ function WorldTriviaScreen() {
                   View All
                 </button>
               </div>
-
-              {/* You can later replace this with actual messages per client if needed */}
               <div className="messages-list">
                 <p className="message-text">Messages for {msg.id}...</p>
               </div>
             </div>
-            // <div
-            //   key={msg.id}
-            //   style={{
-            //     marginBottom: 20,
-            //     display: "flex",
-            //     flexDirection: "row",
-            //     gap: 12,
-            //     alignItems: "center",
-            //   }}
-            // >
-            //   <div>{msg.id}</div>
-            //   <div className="bubble-user">
-            //     <div style={{ color: "#f5f5f5" }}>{msg.content}</div>
-            //     <div style={{ color: "#dbd9d9", fontSize: 10, paddingTop: 5 }}>
-            //       {new Date(msg.sentAt).toLocaleString()}
-            //     </div>
-            //   </div>
-            // </div>
           );
-        })}
+        })} */}
       </div>
     </div>
   );

@@ -18,36 +18,36 @@ interface Message {
 
 export default function UserTriviaMessage() {
   const navigate = useNavigate();
-  const {userId } = useParams(); // Retrieve dynamic 'id' from URL
+  const { userId } = useParams<{ userId: string }>(); // Retrieve dynamic 'id' from URL
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
   console.log("User ID from params:", userId);
-// useEffect(() => {
-//   if (!userId) return;
+  useEffect(() => {
+    if (!userId) return;
 
-//   const fetchMessages = async () => {
-//     setLoading(true);
-//     try {
-//       const res = await fetch(`http://192.168.1.234:3000/messages/${userId}`);
-//       const data = await res.json();
-//       setMessages(data);
-//     } catch (err) {
-//       console.error("Failed to fetch messages", err);
-//     } finally {
-//       setLoading(false);
-//     }
-//   };
+    const fetchMessages = async () => {
+      setLoading(true);
+      try {
+        const res = await fetch(`http://192.168.1.234:3000/messages/${userId}`);
+        const data = await res.json();
+        setMessages(data);
+      } catch (err) {
+        console.error("Failed to fetch messages", err);
+      } finally {
+        setLoading(false);
+      }
+    };
 
-//   fetchMessages();
-// }, [userId]);
+    fetchMessages();
+  }, [userId]);
 
-    useEffect(() => {
-      fetch("http://192.168.1.234:3000/messages") // use your actual IP
-        .then((res) => res.json())
-        .then((data) => setMessages(data))
-        .catch((err) => console.error(err));
-    }, []);
+  // useEffect(() => {
+  //   fetch("http://192.168.1.234:3000/messages") // use your actual IP
+  //     .then((res) => res.json())
+  //     .then((data) => setMessages(data))
+  //     .catch((err) => console.error(err));
+  // }, []);
 
   const handleReply = async (messageId: string, reply: string) => {
     const token = localStorage.getItem("admin_token");
@@ -95,13 +95,13 @@ export default function UserTriviaMessage() {
     }
   };
 
-//   if (loading) {
-//     return (
-//       <div className="centered">
-//         <div className="loader"></div>
-//       </div>
-//     );
-//   }
+  //   if (loading) {
+  //     return (
+  //       <div className="centered">
+  //         <div className="loader"></div>
+  //       </div>
+  //     );
+  //   }
 
   return (
     <div>
