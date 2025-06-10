@@ -112,7 +112,7 @@ function WorldTriviaScreen() {
       </div>
 
       <div className="user-messages">
-        <h2 className="section-title">User Messages</h2>
+        <h2 className="section-title">User Messages asdfadf </h2>
         {/* {userIds.map((userId) => (
           <div key={userId}>
             <h3>User: {userId}</h3>
