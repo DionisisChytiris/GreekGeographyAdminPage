@@ -30,9 +30,7 @@ export default function UserTriviaMessage() {
       setLoading(true);
       try {
         // const res = await fetch(`http://192.168.1.234:3000/messages/${userId}`);
-        const res = await fetch(`https://worldwisetriviaquizbackend.onrender.com
-
-/messages/${userId}`);
+        const res = await fetch(`https://worldwisetriviaquizbackend.onrender.com/messages/${userId}`);
         const data = await res.json();
         setMessages(data);
       } catch (err) {
@@ -62,7 +60,8 @@ export default function UserTriviaMessage() {
 
     try {
       const response = await fetch(
-        `http://192.168.1.234:3000/messages/reply/${messageId}`,
+        // `http://192.168.1.234:3000/messages/reply/${messageId}`,
+        `https://worldwisetriviaquizbackend.onrender.com/messages/reply/${messageId}`,
         {
           method: "POST",
           headers: {

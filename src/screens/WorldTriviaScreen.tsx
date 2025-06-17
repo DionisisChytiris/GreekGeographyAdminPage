@@ -48,7 +48,8 @@ function WorldTriviaScreen() {
   // }, [userId]);
 
   useEffect(() => {
-    fetch("http://192.168.1.234:3000/messages")
+    // fetch("http://192.168.1.234:3000/messages")
+    fetch("https://worldwisetriviaquizbackend.onrender.com/messages")
       .then((res) => res.json())
       .then((data) => {
         const groupedByUser: Record<string, Message[]> = {};
