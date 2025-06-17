@@ -29,7 +29,10 @@ export default function UserTriviaMessage() {
     const fetchMessages = async () => {
       setLoading(true);
       try {
-        const res = await fetch(`http://192.168.1.234:3000/messages/${userId}`);
+        // const res = await fetch(`http://192.168.1.234:3000/messages/${userId}`);
+        const res = await fetch(`https://worldwisetriviaquizbackend.onrender.com
+
+/messages/${userId}`);
         const data = await res.json();
         setMessages(data);
       } catch (err) {
