@@ -12,6 +12,13 @@
   width: 50px;
   height: 50px;
 }
+
+.image-website{
+  width: 60px;
+  height: 40px;
+  border-radius: 10px;
+  margin-right: 10px
+}
 .stats-container {
   display: flex;
   justify-content: space-around;

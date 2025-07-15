@@ -4,20 +4,15 @@
 // import axios from "axios";
 // import "./styles/GreekGeographyScreen.css";
 
-// function GreekGeographyScreen() {
-//   const navigate = useNavigate();
+// function PortofolioWebsite() {
+//    const navigate = useNavigate();
 //   const [clientIds, setClientIds] = useState<string[]>([]);
-//   const [activeUsers, setActiveUsers] = useState<number>(0);
-//   const [lastMessageDates, setLastMessageDates] = useState<{
-//     [key: string]: string;
-//   }>({});
-//   const app_id = "greek-geography";
+//     const [activeUsers, setActiveUsers] = useState<number>(0);
+//     const [lastMessageDates, setLastMessageDates] = useState<{
+//       [key: string]: string;
+//     }>({});
 
-//   const [messageStats, setMessageStats] = useState<{
-//     total: number;
-//     read: number;
-//     unread: number;
-//   }>({ total: 0, read: 0, unread: 0 });
+//     const app_id = "portofolio-website";
 
 //   useEffect(() => {
 //     const fetchClientIds = async () => {
@@ -45,95 +40,92 @@
 
 //   return (
 //     <div>
-//       <header className="greek-quiz-header">
-//         <div
-//           onClick={() => navigate("/homeAdmin")}
-//           style={{ color: "grey", marginRight: "20px" }}
-//         >
-//           Home
-//         </div>
-//         <img src="/logo.png" alt="Greek Map" className="image-greekQuiz" />
-//         <div>Greek Geography Quiz App</div>
-//       </header>
-//       <div className="stats-container">
-//         <div className="stat-card">
-//           <FaEnvelope size={24} color="#4A90E2" />
-//           <p className="stat-number">{activeUsers}</p>
-//           <p className="stat-label">Total Messages</p>
-//         </div>
-//         <div className="stat-card">
-//           <FaUsers size={24} color="#50C878" />
-//           <p className="stat-number">{activeUsers}</p>
-//           <p className="stat-label">Active Users</p>
-//         </div>
-//         <div className="stat-card">
-//           <FaTasks size={24} color="#FFB347" />
-//           <p className="stat-number">0</p>
-//           <p className="stat-label">Pending</p>
-//         </div>
-//       </div>
+//          <header className="greek-quiz-header">
+//            <div
+//              onClick={() => navigate("/homeAdmin")}
+//              style={{ color: "grey", marginRight: "20px" }}
+//            >
+//              Home
+//            </div>
+//            <img src="/adminPanel.png" alt="Greek Map" className="image-website" />
+//            <div>Portofolio Website</div>
+//          </header>
+//          <div className="stats-container">
+//            <div className="stat-card">
+//              <FaEnvelope size={24} color="#4A90E2" />
+//              <p className="stat-number">{activeUsers}</p>
+//              <p className="stat-label">Total Messages</p>
+//            </div>
+//            <div className="stat-card">
+//              <FaUsers size={24} color="#50C878" />
+//              <p className="stat-number">{activeUsers}</p>
+//              <p className="stat-label">Active Users</p>
+//            </div>
+//            <div className="stat-card">
+//              <FaTasks size={24} color="#FFB347" />
+//              <p className="stat-number">...</p>
+//              <p className="stat-label">Pending</p>
+//            </div>
+//          </div>
 
-//       <div className="user-messages">
-//         <h2 className="section-title">User Messages</h2>
-//         {[...clientIds]
+//          <div className="user-messages">
+//            <h2 className="section-title">User Messages</h2>
+//            {[...clientIds]
 //           .sort((a, b) => {
 //             const dateA = new Date(lastMessageDates[`${app_id}__${a}`] || 0);
 //             const dateB = new Date(lastMessageDates[`${app_id}__${b}`] || 0);
 //             return dateB.getTime() - dateA.getTime(); // Descending (newest first)
-//           })
-//           .map((id) => (
-//             <div key={id} className="user-section">
-//               <div className="user-header">
-//                 <div className="user-info">
-//                   <h3 className="user-name">Client ID: {id}</h3>
-//                   <span className="status-dot active"></span>
-//                   <div>
-//                     Date:{" "}
-//                     {lastMessageDates[`${app_id}__${id}`]
-//                       ? new Date(
-//                           lastMessageDates[`${app_id}__${id}`]
-//                         ).toLocaleDateString("en-GB", {
-//                           day: "2-digit",
-//                           month: "short",
-//                           year: "numeric",
-//                           hour: "2-digit",
-//                           minute: "2-digit",
-//                         })
-//                       : "No messages"}
-//                   </div>
-//                 </div>
-//                 <button
-//                   onClick={() => {
-//                     navigate(`/UserGreekQuizMessage/${id}?app_id=${app_id}`);
-//                   }}
-//                   className="view-all-button"
-//                 >
-//                   View Message
-//                 </button>
-//               </div>
-//               {/* You can later replace this with actual messages per client if needed */}
-//               <div className="messages-list">
-//                 <p className="message-text">Messages for {id}...</p>
-//               </div>
-//             </div>
-//           ))}
-//       </div>
-//     </div>
-//   );
+//           }).map((id) => (
+//              <div key={id} className="user-section">
+//                <div className="user-header">
+//                  <div className="user-info">
+//                    <h3 className="user-name">Client ID: {id}</h3>
+//                    <span className="status-dot active"></span>
+//                    <div>
+//                      Date:{" "}
+//                      {lastMessageDates[`${app_id}__${id}`]
+//                        ? new Date(
+//                            lastMessageDates[`${app_id}__${id}`]
+//                          ).toLocaleDateString("en-GB", {
+//                            day: "2-digit",
+//                            month: "short",
+//                            year: "numeric",
+//                            hour: "2-digit",
+//                            minute: "2-digit",
+//                          })
+//                        : "No messages"}
+//                    </div>
+//                  </div>
+//                  <button
+//                    onClick={() =>
+//                      navigate(`/UserGreekQuizMessage/${id}?app_id=${app_id}`)
+//                    }
+//                    className="view-all-button"
+//                  >
+//                    View Message
+//                  </button>
+//                </div>
+//                {/* You can later replace this with actual messages per client if needed */}
+//                <div className="messages-list">
+//                  <p className="message-text">Messages for {id}...</p>
+//                </div>
+//              </div>
+//            ))}
+//          </div>
+//        </div>
+//      );
 // }
 
-// export default GreekGeographyScreen;
+// export default PortofolioWebsite
 
 import React, { useEffect, useState } from "react";
 import { useNavigate } from "react-router-dom";
-import { FaEnvelope, FaUsers, FaTasks } from "react-icons/fa";
+import { FaEnvelope, FaUsers, FaTasks } from "react-icons/fa"; // Icons for stat cards
 import axios from "axios";
 import "./styles/GreekGeographyScreen.css";
 
-function GreekGeographyScreen() {
+function PortofolioWebsite() {
   const navigate = useNavigate();
-  const app_id = "greek-geography";
-
   const [clientIds, setClientIds] = useState<string[]>([]);
   const [activeUsers, setActiveUsers] = useState<number>(0);
   const [lastMessageDates, setLastMessageDates] = useState<{
@@ -146,6 +138,8 @@ function GreekGeographyScreen() {
     read: 0,
     unread: 0,
   });
+
+  const app_id = "portofolio-website";
 
   // Fetch client IDs and message dates
   useEffect(() => {
@@ -312,89 +306,10 @@ function GreekGeographyScreen() {
             </div>
           ))}
 
-        {/* {clientIds
-          .filter((id) => {
-            const clientMessages = messages.filter(
-              (msg) => msg.client_id === id
-            );
-            const latest = clientMessages.sort(
-              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-            )[0];
-
-            if (!latest) return false;
-
-            if (filter === "read") return latest.read === true;
-            if (filter === "unread") return latest.read === false;
-            return true;
-          })
-          .sort((a, b) => {
-            const dateA = new Date(lastMessageDates[`${app_id}__${a}`] || 0);
-            const dateB = new Date(lastMessageDates[`${app_id}__${b}`] || 0);
-            return dateB.getTime() - dateA.getTime();
-          })
-          .map((id) => {
-            const clientMessages = messages.filter(
-              (msg) => msg.client_id === id
-            );
-            const latest = clientMessages.sort(
-              (a, b) => new Date(b.date).getTime() - new Date(a.date).getTime()
-            )[0];
-
-            return (
-              <div key={id} className="user-section">
-                <div className="user-header">
-                  <div className="user-info">
-                    <h3 className="user-name">Client ID: {id}</h3>
-                    <span className="status-dot active"></span>
-                    <div>
-                      Date:{" "}
-                      {lastMessageDates[`${app_id}__${id}`]
-                        ? new Date(
-                            lastMessageDates[`${app_id}__${id}`]
-                          ).toLocaleDateString("en-GB", {
-                            day: "2-digit",
-                            month: "short",
-                            year: "numeric",
-                            hour: "2-digit",
-                            minute: "2-digit",
-                          })
-                        : "No messages"}
-                    </div>
-                  </div>
-                  <div>
-                    {latest?.read ? (
-                      <span style={{ color: "green", fontWeight: "bold" }}>
-                        Read
-                      </span>
-                    ) : (
-                      <span style={{ color: "red", fontWeight: "bold" }}>
-                        Unread
-                      </span>
-                    )}
-                  </div>
-                  <button
-                    onClick={() => {
-                      if (latest && !latest.read) {
-                        markAsRead(latest._id);
-                      }
-                      navigate(`/UserGreekQuizMessage/${id}?app_id=${app_id}`);
-                    }}
-                    className="view-all-button"
-                  >
-                    View Message
-                  </button>
-                </div>
-                <div className="messages-list">
-                  <p className="message-text">
-                    {latest?.message || "No message content"}
-                  </p>
-                </div>
-              </div>
-            );
-          })} */}
+      
       </div>
     </div>
   );
 }
 
-export default GreekGeographyScreen;
+export default PortofolioWebsite;

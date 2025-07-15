@@ -1,7 +1,7 @@
 import React, { useEffect, useState } from "react";
 import { FaEnvelope, FaUsers, FaTasks } from "react-icons/fa";
 import { useNavigate, useParams } from "react-router-dom";
-import "./WorldTriviaScreen.css";
+import "./styles/WorldTriviaScreen.css";
 
 function WorldTriviaScreen() {
   const navigate = useNavigate();

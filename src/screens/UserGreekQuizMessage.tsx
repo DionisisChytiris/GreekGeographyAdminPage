@@ -2,12 +2,14 @@ import React, { useEffect, useState } from "react";
 import { MessageBubble } from "../components/MessageBubble";
 import { ReplyInput } from "../components/ReplyInput";
 import { toast } from "sonner";
-import "./HomeScreen.css";
+import "./styles/HomeScreen.css";
 import { useNavigate, useParams } from "react-router-dom";
+import { useLocation } from "react-router-dom";
 import axios from "axios";
 
 interface Message {
   _id: string;
+  app_id: string;
   client_id: string;
   message: string;
   createdAt: string;
@@ -20,6 +22,9 @@ interface Message {
 export default function UserGreekQuizMessage() {
   const navigate = useNavigate();
   const { id } = useParams(); // Retrieve dynamic 'id' from URL
+  const location = useLocation();
+  const searchParams = new URLSearchParams(location.search);
+  const app_id = searchParams.get("app_id") || "greek-geography"; // fallback if needed
   const [messages, setMessages] = useState<Message[]>([]);
   const [loading, setLoading] = useState(true);
 
@@ -31,7 +36,7 @@ export default function UserGreekQuizMessage() {
       }
 
       const response = await fetch(
-        `https://greek-geography-quiz-app-backend.vercel.app/messages?client_id=${id}`
+        `https://greek-geography-quiz-app-backend.vercel.app/messages?client_id=${id}&app_id=${app_id}`
       );
 
       if (!response.ok) throw new Error("Failed to fetch messages");
@@ -42,7 +47,7 @@ export default function UserGreekQuizMessage() {
         data.map(async (message: Message) => {
           try {
             const repliesResponse = await fetch(
-              `https://greek-geography-quiz-app-backend.vercel.app/messages/${message._id}/replies`
+              `https://greek-geography-quiz-app-backend.vercel.app/messages/${message._id}/replies?app_id=${app_id}`
             );
             if (!repliesResponse.ok) {
               console.warn(
@@ -86,6 +91,7 @@ export default function UserGreekQuizMessage() {
           },
           body: JSON.stringify({
             client_id: id, // Use dynamic 'id' here
+            app_id,
             message_id: messageId,
             reply,
           }),
@@ -129,9 +135,14 @@ export default function UserGreekQuizMessage() {
   return (
     <div>
       <header className="greek-quiz-header">
-        <div onClick={() => navigate("/homeAdmin")} style={{color: 'grey', marginRight: '20px'}}>Home</div>
-         <img src='/logo.png' alt="Gr" className="image-greekQuiz" />
-         <div>Greek Geography Quiz</div>
+        <div
+          onClick={() => navigate("/homeAdmin")}
+          style={{ color: "grey", marginRight: "20px" }}
+        >
+          Home
+        </div>
+        <img src="/logo.png" alt="Gr" className="image-greekQuiz" />
+        <div>Greek Geography Quiz</div>
       </header>
       {/* <div className="buttons-container">
         <div onClick={() => navigate("/homeAdmin")} className="home-button">
@@ -141,7 +152,7 @@ export default function UserGreekQuizMessage() {
           Logout
         </div>
       </div> */}
-      <div style={{textAlign: 'center'}}>User number: {id}</div>
+      <div style={{ textAlign: "center" }}>User number: {id}</div>
       <div className="messageBox">
         {messages.length === 0 ? (
           <div className="centered">
@@ -164,7 +175,6 @@ export default function UserGreekQuizMessage() {
                     isAdmin={true}
                   />
                 ))}
-                
               </div>
             ))}
           </div>

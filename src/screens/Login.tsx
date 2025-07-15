@@ -1,6 +1,6 @@
 import React, { useState } from "react";
 import { LogIn } from 'lucide-react';
-import "./Login.css";
+import "./styles/Login.css";
 import SignInForm from "../components/SignInForm"; // Adjust the path as needed
 
 const AdminLogin: React.FC = () => {

@@ -2,7 +2,7 @@ import React, { useEffect, useState } from "react";
 import { MessageBubble } from "../components/MessageBubble";
 import { ReplyInput } from "../components/ReplyInput";
 import { toast } from "sonner";
-import "./HomeScreen.css";
+import "./styles/HomeScreen.css";
 import { useNavigate, useParams } from "react-router-dom";
 import axios from "axios";
 

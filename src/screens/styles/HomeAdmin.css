@@ -1,0 +1,115 @@
+/* Stats Container */
+.stats-container1 {
+  display: flex;
+  flex-wrap: wrap;
+  justify-content: center;
+  gap: 30px;
+  margin-top: 120px;
+  margin-bottom: 120px;
+  padding-right: 20px;
+  padding-left: 20px;
+}
+
+.notification-badge1 {
+  position: absolute;
+  top: 10px;
+  right: 20px;
+  background-color: white;
+  color: red;
+  font-size: 12px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+.notification-badge2 {
+  position: absolute;
+  top: 10px;
+  right: 5px;
+  background-color: red;
+  color: white;
+  font-size: 12px;
+  border-radius: 50%;
+  width: 20px;
+  height: 20px;
+  display: flex;
+  align-items: center;
+  justify-content: center;
+  font-weight: bold;
+}
+
+.stat-card1 {
+  position: relative;
+  background-color: rgb(100, 152, 248);
+  padding: 15px;
+  border-radius: 12px;
+  text-align: center;
+  width: 40%;
+  /* width: 200px; */
+  height: 200px;
+  box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+}
+
+.stat-card1:hover {
+  background-color: rgb(255, 255, 255);
+  transition: all 0.3s ease;
+}
+.quiz-image1 {
+  width: 150px;
+  height: 150px;
+}
+.quiz-image2 {
+  width: 100px;
+  height: 100px;
+  margin-top: 30px;
+}
+.quiz-image3 {
+  width: 250px;
+  height: 130px;
+  margin-top: 15px;
+  border-radius: 20px;
+}
+
+/* Medium screens (tablets) */
+@media (max-width: 800px) {
+  .stats-container1 {
+    display: flex;
+    justify-content: center;
+    align-items: center;
+    flex-direction: column;
+    gap: 30px;
+    margin-top: 60px;
+    margin-bottom: 100px;
+  }
+  .stat-card1 {
+    background-color: rgb(240, 240, 240);
+    padding: 15px;
+    border-radius: 12px;
+    text-align: center;
+    width: 75%;
+    height: 200px;
+    box-shadow: 0px 2px 4px rgba(0, 0, 0, 0.1);
+  }
+  .quiz-image3 {
+    width: 200px;
+    height: 130px;
+    margin-top: 15px;
+    border-radius: 20px;
+  }
+}
+
+/* Large screens (desktops) */
+@media (min-width: 900px) {
+  .stat-card1 {
+    width: 30%;
+  }
+  .quiz-image3 {
+    width: 200px;
+    height: 130px;
+    margin-top: 15px;
+    border-radius: 20px;
+  }
+}
