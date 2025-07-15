@@ -94,8 +94,8 @@ function TriviaWebsite() {
         >
           Home
         </div>
-        <img src="/logo.png" alt="Greek Map" className="image-greekQuiz" />
-        <div>Greek Geography Quiz App</div>
+         <img src="/worldTrivia.png" alt="Greek Map" className="image-website" />
+        <div>World Wise Trivia Website</div>
       </header>
 
       {/* Stats Buttons */}

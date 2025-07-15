@@ -215,8 +215,8 @@ function PortofolioWebsite() {
         >
           Home
         </div>
-        <img src="/logo.png" alt="Greek Map" className="image-greekQuiz" />
-        <div>Greek Geography Quiz App</div>
+       <img src="/adminPanel.png" alt="Greek Map" className="image-website" />
+           <div>Portofolio Website</div>
       </header>
 
       {/* Stats Buttons */}

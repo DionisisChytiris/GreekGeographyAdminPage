@@ -94,8 +94,8 @@ function GreekWebsite() {
         >
           Home
         </div>
-        <img src="/logo.png" alt="Greek Map" className="image-greekQuiz" />
-        <div>Greek Geography Quiz App</div>
+        <img src="/greekApp.png" alt="Greek Map" className="image-website" />
+        <div>Greek Geography Website</div>
       </header>
 
       {/* Stats Buttons */}
